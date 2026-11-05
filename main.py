@@ -1,25 +1,34 @@
 
 
 def main ():
+    orders = []
+    products = [
+        {"id": 1, "name": "Keyboard", "price": 120},
+        {"id": 2, "name": "Mouse", "price": 80},
+        {"id": 3, "name": "Monitor", "price": 900},
+        {"id": 4, "name": "Headphones", "price": 200},
+        {"id": 5, "name": "USB Cable", "price": 30}]
+
     while True:
         main_menu_selection = main_menu()
+        match main_menu_selection:
+            case "1":
+                create_order(products,orders)
+            case "2":
+                            pass
+            case "3":
+                             pass
+            case "4":
+                             pass
+            case "5":
+                    pass
+            case "0":
+                    exit()
 
-
-
-        break
-    
-    pass
-
-
-def create_order():
+def create_order(products,orders):
     order_id = int(get_input("enter order id: "))
     items = []
-    products = [
-    {"id": 1, "name": "Keyboard", "price": 120},
-    {"id": 2, "name": "Mouse", "price": 80},
-    {"id": 3, "name": "Monitor", "price": 900},
-    {"id": 4, "name": "Headphones", "price": 200},
-    {"id": 5, "name": "USB Cable", "price": 30}]
+   
     while True:
         order_menu = input(f"Enter 1 to add product, 0 to finish order: ")
         match order_menu:
@@ -36,7 +45,7 @@ def create_order():
                 print ("invalid 'ENTER' returning to menu")
     total_price = calculate_total_price(items,products)
     order = {"id":order_id,"items":items,"total":total_price,"status":"OPEN"}
-    print (order)
+    orders.append(order)
 
 def calculate_total_price(items,products):
     total_price = 0
@@ -81,6 +90,7 @@ Choose option:
 5. Show sales report
 0. Exit
 """)
+    return maain_menu_selection
 
     pass
 def show_orders():
@@ -106,14 +116,3 @@ order = {
     "status": "OPEN"
 }
 """ 
-
-
-"""
-order = {
-    "id": 1,
-    "items": [{"product_id": 1, "quantity": 2},
-              {"product_id": 3, "quantity": 1}],
-    "total": 1026.0,
-    "status": "OPEN"
-}
-"""
