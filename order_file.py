@@ -1,8 +1,9 @@
 from application_flow import get_input
 
-def create_order(products,orders):
+def create_order(products,orders,order_number):
     print (orders)
-    order_id = int(get_input("enter order id: "))
+    
+    order_id = order_number
     items = []
    
     while True:
@@ -10,7 +11,7 @@ def create_order(products,orders):
         match order_menu:
             
             case "1":
-                product_id = order_id = int(get_input("enter product id: "))
+                product_id = int(get_input("enter product id: "))
                 product_quantity =int(get_input("enter product quantity: "))
                 product = {"product_id":product_id,"quantity":product_quantity}
                 items.append(product)
@@ -19,8 +20,11 @@ def create_order(products,orders):
                 break
             case _:
                 print ("invalid 'ENTER' returning to menu")
-    total_price = calculate_total_order_price(items,products)
-    order = {"id":order_id,"items":items,"total":total_price,"status":"OPEN"}
+    price_before_discount,discount,price_after_discount = calculate_total_order_price(items,products)
+    
+    print (f"\nORDER SUMMARY\nPrice b4 discount: {price_before_discount}\nDiscount: {discount}\nPrice after discount: {price_after_discount}")
+
+    order = {"id":order_id,"items":items,"total":price_after_discount,"status":"OPEN"}
     orders.append(order)
 
 def calculate_total_order_price(items,products):
@@ -29,17 +33,22 @@ def calculate_total_order_price(items,products):
         for product in products:
             if item ["product_id"] == product["id"]:
                 total_price += product["price"] * item["quantity"]
-    price_after_sale = calculate_order_discount(total_price)
-    return price_after_sale
+    discount,price_after_discount = calculate_order_discount(total_price)
+    return total_price,discount,price_after_discount
 
 def calculate_order_discount(total_price):
     if total_price < 300:
-        return total_price
-    elif 300 <= total_price < 700:
-        return total_price * 0.95
-    elif 700 <= total_price <1500:
-        return total_price * 0.9
-    elif total_price >= 1500:
-        return total_price * 0.85
-
+        price_after_discount = total_price
+        return total_price,"no_discount",price_after_discount
     
+    elif 300 <= total_price < 700:
+        price_after_discount = total_price * 0.95
+        return "5%",price_after_discount
+    
+    elif 700 <= total_price <1500:
+        price_after_discount = total_price * 0.9
+        return "10%",price_after_discount
+    
+    elif total_price >= 1500:
+        price_after_discount = total_price * 0.85
+        return "15%",price_after_discount

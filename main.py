@@ -1,7 +1,13 @@
 from order_file import create_order
-from application_flow import main_menu
+from application_flow import main_menu,show_orders,find_order_by_id,close_order
+import json
+import logging
 
 def main ():
+    logging.basicConfig(
+    level=logging.INFO,                                  
+    format="%(asctime)s %(levelname)s %(message)s",)
+    logging.info ("Application entered")
     orders = []
     products = [
         {"id": 1, "name": "Keyboard", "price": 120},
@@ -16,11 +22,11 @@ def main ():
             case "1":
                 create_order(products,orders)
             case "2":
-                            pass
+                show_orders(orders)
             case "3":
-                             pass
+                find_order_by_id(orders)
             case "4":
-                             pass
+                close_order(orders)
             case "5":
                     pass
             case "0":
@@ -28,13 +34,11 @@ def main ():
             case _:
                     print(f"\n INVALID INPUT TRY AGAIN:")
 
+
+
 if __name__ == "__main__":
         main()
-def calculate_price():
-    pass
 
-def show_orders():
-    pass
 
 """
 products = [
