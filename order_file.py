@@ -1,7 +1,8 @@
-from application_flow import get_input
+from application_flow import get_input,show_order_summary
+from validations import check_valid_product_id,check_valid_product_quantity
 import logging
 logging.basicConfig(level=logging.INFO,format="%(asctime)s %(levelname)s %(message)s",)
-   
+
 def create_order(products,orders,order_number):
     order_id = order_number
     items = []
@@ -18,9 +19,8 @@ def create_order(products,orders,order_number):
                         logging.warning("user entered invalid id")
                         continue
                     else:
-                        if product_id not in [1,2,3,4,5]:
+                        if not check_valid_product_id(product_id):
                             print ("id must be a number from 1 to 5")
-                            logging.warning("user entered invalid id number")
                             continue
                         break
                 while True:
@@ -31,9 +31,8 @@ def create_order(products,orders,order_number):
                         logging.warning("user entered invalid quantity")
                         continue
                     else:
-                        if product_quantity <= 0:
+                        if not check_valid_product_quantity(product_quantity):
                             print("quantity must be a positive number")
-                            logging.warning("user didnt enter positive number for quantity")
                             continue
                         break
 
@@ -47,11 +46,11 @@ def create_order(products,orders,order_number):
                 logging.warning("user selected invalid menu option")
 
     price_before_discount,discount,price_after_discount = calculate_total_order_price(items,products)
-    
-    print (f"\nORDER SUMMARY\nPrice b4 discount: {price_before_discount}\nDiscount: {discount}\nPrice after discount: {price_after_discount}")
-
     order = {"id":order_id,"items":items,"total":price_after_discount,"status":"OPEN"}
     orders.append(order)
+    show_order_summary(price_before_discount,discount,price_after_discount)
+
+    
 
 def calculate_total_order_price(items,products):
     total_price = 0

@@ -3,11 +3,8 @@ logging.basicConfig(
     level=logging.INFO,                                  
     format="%(asctime)s %(levelname)s %(message)s",)
 
-
-
 def main_menu ():
-    maain_menu_selection = input ("""
-
+    main_menu_selection = input ("""
 ========== ORDER MANAGER ==========
 Choose option:
 1. Create order
@@ -17,7 +14,7 @@ Choose option:
 5. Show sales report
 0. Exit
 """)
-    return maain_menu_selection
+    return main_menu_selection
 
 def get_input(message):
     user_input = input (f"{message}")
@@ -37,7 +34,6 @@ def get_order_number(orders):
         return last_order["id"]+1
 
 def find_order_by_id(orders):
-    logging.info("User searched for order by id")
     try:
         order_id = int(get_input("Enter order id: "))
     except ValueError:
@@ -46,12 +42,12 @@ def find_order_by_id(orders):
     else:
         for order in orders:
             if order_id == order["id"]:
+                logging.info(f"User searched for order {order_id}")
                 print (order)
                 break
         print ("No order with this ID")
     finally:
         print ("\nReturning to main menu")
-
 
 def close_order(orders):
     logging.info("user selected to close order by id")
@@ -71,7 +67,6 @@ def close_order(orders):
     finally:
         print ("\nReturning to main menu")
 
-
 def sales_report(orders):
     num_of_orders = len(orders)
     closed_orders = []
@@ -88,10 +83,8 @@ def sales_report(orders):
     top_three_orders = sorted_closed_orders[-3:]
     show_sales_report(num_of_orders,total_closed_orders,most_expensive_order,top_three_orders)
 
-  
 def show_sales_report(num_of_orders,total_closed_orders,most_expensive_order,top_three_orders):
     print(f"""
-
 ---- SALES REPORT ----
 NUMBER OF ORDERS: {num_of_orders}
 TOTAL OF CLOSED ORDERS: {total_closed_orders}
@@ -100,5 +93,7 @@ TOP THREE ORDERES:
 {top_three_orders[0]}\n
 {top_three_orders[1]}\n
 {top_three_orders[2]}
-
 """)
+
+def show_order_summary(price_before_discount,discount,price_after_discount):
+    print (f"\nORDER SUMMARY\nPrice b4 discount: {price_before_discount}\nDiscount: {discount}\nPrice after discount: {price_after_discount}")

@@ -46,5 +46,38 @@
     ],
     "total": 1.2558558558558546e+16,
     "status": "CLOSED"
+  },
+  {
+    "id": 5,
+    "items": [
+      {
+        "product_id": 4,
+        "quantity": 234
+      }
+    ],
+    "total": 39780.0,
+    "status": "OPEN"
+  },
+  {
+    "id": 6,
+    "items": [
+      {
+        "product_id": 1,
+        "quantity": 123123
+      }
+    ],
+    "total": 12558546.0,
+    "status": "OPEN"
+  },
+  {
+    "id": 7,
+    "items": [
+      {
+        "product_id": 5,
+        "quantity": 65
+      }
+    ],
+    "total": 1657.5,
+    "status": "OPEN"
   }
 ]

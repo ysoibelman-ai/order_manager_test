@@ -1,7 +1,6 @@
 from order_file import create_order
 from application_flow import main_menu,show_orders,find_order_by_id,close_order,get_order_number,sales_report
 from managing_order_file import load_orders_file,add_order_to_file
-import json
 import logging
 
 
