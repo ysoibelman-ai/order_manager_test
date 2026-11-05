@@ -19,7 +19,7 @@ Choose option:
 
 def get_input(message):
     user_input = input (f"{message}")
-    logging.info("User entered input")
+    logging.info(f"User entered {message}")
     return user_input
 
 def show_orders(orders):

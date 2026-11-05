@@ -8,6 +8,9 @@ def main ():
     level=logging.INFO,                                  
     format="%(asctime)s %(levelname)s %(message)s",)
     logging.info ("Application entered")
+    
+    order_number = 1
+
     orders = []
     products = [
         {"id": 1, "name": "Keyboard", "price": 120},
@@ -20,7 +23,8 @@ def main ():
         main_menu_selection = main_menu()
         match main_menu_selection:
             case "1":
-                create_order(products,orders)
+                create_order(products,orders,order_number)
+                order_number +=1
             case "2":
                 show_orders(orders)
             case "3":

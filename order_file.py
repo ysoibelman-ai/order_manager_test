@@ -1,18 +1,42 @@
 from application_flow import get_input
-
+import logging
+logging.basicConfig(level=logging.INFO,format="%(asctime)s %(levelname)s %(message)s",)
+   
 def create_order(products,orders,order_number):
-    print (orders)
-    
     order_id = order_number
     items = []
-   
     while True:
         order_menu = input(f"Enter 1 to add product, 0 to finish order: ")
         match order_menu:
             
             case "1":
-                product_id = int(get_input("enter product id: "))
-                product_quantity =int(get_input("enter product quantity: "))
+                while True:
+                    try:
+                        product_id = int(get_input("enter product id: "))
+                    except ValueError:
+                        print ("id needs to be a number")
+                        logging.warning("user entered invalid id")
+                        continue
+                    else:
+                        if product_id not in [1,2,3,4,5]:
+                            print ("id must be a number from 1 to 5")
+                            logging.warning("user entered invalid id number")
+                            continue
+                        break
+                while True:
+                    try:
+                        product_quantity =int(get_input("enter product quantity: "))
+                    except ValueError:
+                        print ("quantity must be a number")
+                        logging.warning("user entered invalid quantity")
+                        continue
+                    else:
+                        if product_quantity <= 0:
+                            print("quantity must be a positive number")
+                            logging.warning("user didnt enter positive number for quantity")
+                            continue
+                        break
+
                 product = {"product_id":product_id,"quantity":product_quantity}
                 items.append(product)
 
@@ -20,6 +44,8 @@ def create_order(products,orders,order_number):
                 break
             case _:
                 print ("invalid 'ENTER' returning to menu")
+                logging.warning("user selected invalid menu option")
+
     price_before_discount,discount,price_after_discount = calculate_total_order_price(items,products)
     
     print (f"\nORDER SUMMARY\nPrice b4 discount: {price_before_discount}\nDiscount: {discount}\nPrice after discount: {price_after_discount}")
