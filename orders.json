@@ -4,36 +4,47 @@
     "items": [
       {
         "product_id": 3,
-        "quantity": 123
+        "quantity": 45
       },
       {
-        "product_id": 4,
-        "quantity": 5
+        "product_id": 3,
+        "quantity": 67
       }
     ],
-    "total": 94945.0,
+    "total": 85680.0,
     "status": "CLOSED"
   },
   {
     "id": 2,
     "items": [
       {
-        "product_id": 3,
-        "quantity": 4567
+        "product_id": 4,
+        "quantity": 12345
       }
     ],
-    "total": 3493755.0,
-    "status": "OPEN"
+    "total": 2098650.0,
+    "status": "CLOSED"
   },
   {
     "id": 3,
     "items": [
       {
         "product_id": 3,
-        "quantity": 34334
+        "quantity": 123123
       }
     ],
-    "total": 26265510.0,
-    "status": "OPEN"
+    "total": 94189095.0,
+    "status": "CLOSED"
+  },
+  {
+    "id": 4,
+    "items": [
+      {
+        "product_id": 1,
+        "quantity": 123123123123123
+      }
+    ],
+    "total": 1.2558558558558546e+16,
+    "status": "CLOSED"
   }
 ]

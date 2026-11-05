@@ -1,5 +1,5 @@
 from order_file import create_order
-from application_flow import main_menu,show_orders,find_order_by_id,close_order,get_order_number
+from application_flow import main_menu,show_orders,find_order_by_id,close_order,get_order_number,sales_report
 from managing_order_file import load_orders_file,add_order_to_file
 import json
 import logging
@@ -36,13 +36,11 @@ def main ():
                 close_order(orders)
                 add_order_to_file(orders)
             case "5":
-                    pass
+                    sales_report(orders)
             case "0":
                     exit()
             case _:
                     print(f"\n INVALID INPUT TRY AGAIN:")
-
-
 
 if __name__ == "__main__":
         main()
