@@ -25,8 +25,11 @@ def main ():
                     pass
             case "0":
                     exit()
+            case _:
+                    print(f"\n INVALID INPUT TRY AGAIN:")
 
-
+if __name__ == "__main__":
+        main()
 def calculate_price():
     pass
 

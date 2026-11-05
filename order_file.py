@@ -1,6 +1,7 @@
 from application_flow import get_input
 
 def create_order(products,orders):
+    print (orders)
     order_id = int(get_input("enter order id: "))
     items = []
    
@@ -18,20 +19,20 @@ def create_order(products,orders):
                 break
             case _:
                 print ("invalid 'ENTER' returning to menu")
-    total_price = calculate_total_price(items,products)
+    total_price = calculate_total_order_price(items,products)
     order = {"id":order_id,"items":items,"total":total_price,"status":"OPEN"}
     orders.append(order)
 
-def calculate_total_price(items,products):
+def calculate_total_order_price(items,products):
     total_price = 0
     for item in items:
         for product in products:
             if item ["product_id"] == product["id"]:
                 total_price += product["price"] * item["quantity"]
-    price_after_sale = calculate_discount(total_price)
+    price_after_sale = calculate_order_discount(total_price)
     return price_after_sale
 
-def calculate_discount(total_price):
+def calculate_order_discount(total_price):
     if total_price < 300:
         return total_price
     elif 300 <= total_price < 700:
