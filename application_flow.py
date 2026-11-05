@@ -28,7 +28,12 @@ def show_orders(orders):
     for order in orders:
         print (order)
     
-
+def get_order_number(orders):
+    if orders == []:
+        return 1
+    else:
+        last_order = orders[-1]
+        return last_order["id"]+1
 
 def find_order_by_id(orders):
     logging.info("User searched for order by id")

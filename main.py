@@ -1,7 +1,9 @@
 from order_file import create_order
-from application_flow import main_menu,show_orders,find_order_by_id,close_order
+from application_flow import main_menu,show_orders,find_order_by_id,close_order,get_order_number
+from managing_order_file import load_orders_file,add_order_to_file
 import json
 import logging
+
 
 def main ():
     logging.basicConfig(
@@ -9,9 +11,9 @@ def main ():
     format="%(asctime)s %(levelname)s %(message)s",)
     logging.info ("Application entered")
     
-    order_number = 1
-
-    orders = []
+    
+    orders = load_orders_file()
+    order_number = get_order_number(orders)
     products = [
         {"id": 1, "name": "Keyboard", "price": 120},
         {"id": 2, "name": "Mouse", "price": 80},
@@ -24,6 +26,7 @@ def main ():
         match main_menu_selection:
             case "1":
                 create_order(products,orders,order_number)
+                add_order_to_file(orders)
                 order_number +=1
             case "2":
                 show_orders(orders)
@@ -31,6 +34,7 @@ def main ():
                 find_order_by_id(orders)
             case "4":
                 close_order(orders)
+                add_order_to_file(orders)
             case "5":
                     pass
             case "0":
