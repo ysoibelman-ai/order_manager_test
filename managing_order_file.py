@@ -25,4 +25,4 @@ def add_order_to_file(orders):
     except json.decoder.JSONDecodeError:
         print ("Un-able to add orders to file")
     else:
-        logging.info("Updated order file with new orders")
+        logging.info("Updated order json file")

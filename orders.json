@@ -79,5 +79,38 @@
     ],
     "total": 1657.5,
     "status": "OPEN"
+  },
+  {
+    "id": 8,
+    "items": [
+      {
+        "product_id": 1,
+        "quantity": 1
+      }
+    ],
+    "total": 120,
+    "status": "CLOSED"
+  },
+  {
+    "id": 9,
+    "items": [
+      {
+        "product_id": 5,
+        "quantity": 123123123123123123
+      }
+    ],
+    "total": 3.1396396396396396e+18,
+    "status": "CLOSED"
+  },
+  {
+    "id": 10,
+    "items": [
+      {
+        "product_id": 1,
+        "quantity": 1
+      }
+    ],
+    "total": 120,
+    "status": "OPEN"
   }
 ]

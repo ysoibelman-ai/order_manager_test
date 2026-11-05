@@ -1,6 +1,7 @@
 from order_file import create_order
-from application_flow import main_menu,show_orders,find_order_by_id,close_order,get_order_number,sales_report
+from application_flow import find_order_by_id,close_order,get_order_number,sales_report
 from managing_order_file import load_orders_file,add_order_to_file
+from output import show_orders,main_menu
 import logging
 
 
@@ -9,7 +10,6 @@ def main ():
     level=logging.INFO,                                  
     format="%(asctime)s %(levelname)s %(message)s",)
     logging.info ("Application entered")
-    
     
     orders = load_orders_file()
     order_number = get_order_number(orders)

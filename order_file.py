@@ -1,4 +1,5 @@
-from application_flow import get_input,show_order_summary
+from application_flow import get_input
+from output import show_order_summary
 from validations import check_valid_product_id,check_valid_product_quantity
 import logging
 logging.basicConfig(level=logging.INFO,format="%(asctime)s %(levelname)s %(message)s",)
@@ -50,8 +51,6 @@ def create_order(products,orders,order_number):
     orders.append(order)
     show_order_summary(price_before_discount,discount,price_after_discount)
 
-    
-
 def calculate_total_order_price(items,products):
     total_price = 0
     for item in items:
@@ -64,7 +63,7 @@ def calculate_total_order_price(items,products):
 def calculate_order_discount(total_price):
     if total_price < 300:
         price_after_discount = total_price
-        return total_price,"no_discount",price_after_discount
+        return "No Discount",price_after_discount
     
     elif 300 <= total_price < 700:
         price_after_discount = total_price * 0.95
